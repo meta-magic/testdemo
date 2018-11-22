@@ -1,0 +1,68 @@
+<amexio-card [footer]="true" [header]="true" [show]="true" [header-align]="'left'" [footer-align]="'right'">
+    <amexio-header>
+        Employee Registration Form
+    </amexio-header>
+    <amexio-body>
+        <amexio-row>
+            <amexio-column size="6">
+                <amexio-text-input [field-label]="'First Name'" [(ngModel)]="employee.firstName" name="employee.firstName" [place-holder]="'Please enter first name'" [allow-blank]="true" [min-length]="0" [max-length]="20" [font-size]="10" [has-label]="true">
+                </amexio-text-input>
+            </amexio-column>
+            <amexio-column size="6">
+                <amexio-text-input [field-label]="'Last Name'" [(ngModel)]="employee.lastName" name="employee.lastName" [place-holder]="'Please enter last name'" [allow-blank]="true" [min-length]="0" [max-length]="20" [font-size]="10" [has-label]="true">
+                </amexio-text-input>
+            </amexio-column>
+        </amexio-row>
+
+        <amexio-row>
+            <amexio-column size="6">
+                <amexio-radio-group [field-label]="'Gender'" [(ngModel)]="employee.genderId" name="employee.genderId" [display-field]="'gender'" [value-field]="'genderId'" [data]="genderId_Data" [horizontal]="true">
+                </amexio-radio-group>
+            </amexio-column>
+            <amexio-column size="6">
+                <amexio-number-input [field-label]="'Age'" [(ngModel)]="employee.age" name="employee.age" [place-holder]="'Please enter Phone No'" [allow-blank]="true" [font-size]="10" [has-label]="true" [min-value]="0" [max-value]="20">
+                </amexio-number-input>
+            </amexio-column>
+        </amexio-row>
+
+        <amexio-row>
+            <amexio-column size="6">
+                <amexio-dropdown [(ngModel)]="employee.countryId" name="employee.countryId" [search]="true" [field-label]="'Country'" [http-url]="'https://restapi.amexio.org:8991/rest-sample-app/api/region/country/'" [http-method]="'get'" [display-field]="'countryName'"
+                    [value-field]="'id'" (onSingleSelect)="onSingleSelect_countryId($event)">
+                </amexio-dropdown>
+            </amexio-column>
+            <amexio-column size="6">
+                <amexio-dropdown [(ngModel)]="employee.stateId" name="employee.stateId" [search]="true" [field-label]="'State'" [data]="stateId_Data" [display-field]="'stateName'" [value-field]="'stateId'">
+                </amexio-dropdown>
+            </amexio-column>
+        </amexio-row>
+
+        <amexio-row>
+            <amexio-column size="6">
+                <amexio-text-input [field-label]="'Email'" [(ngModel)]="employee.email" name="employee.email" [allow-blank]="true" [min-length]="0" [max-length]="20" [font-size]="10" [has-label]="true">
+                </amexio-text-input>
+            </amexio-column>
+            <amexio-column size="6">
+                <amexio-text-input [field-label]="'Phone'" [(ngModel)]="employee.phone" name="employee.phone" [allow-blank]="true" [min-length]="0" [max-length]="20" [font-size]="10" [has-label]="true">
+                </amexio-text-input>
+            </amexio-column>
+        </amexio-row>
+
+
+    </amexio-body>
+
+    <amexio-action>
+        <amexio-button [label]="'Navigate'" [type]="'theme-color'" [tooltip]="'Save'" [size]="'default'" [form-bind]="'navigate'" (onClick)="onClick_navigate($event)">
+        </amexio-button>
+
+    </amexio-action>
+</amexio-card>
+<amexio-notification [data]="successMsgData" [vertical-position]="'top'" [horizontal-position]="'right'" [close-on-escape]="true" [background-color]="'green'" [auto-dismiss-msg]="true" [auto-dismiss-msg-interval]="4000">
+    <ng-template #amexioNotificationTemplates let-row="row">
+        <amexio-box>
+            <amexio-image [icon-class]="'fa fa-check'">
+            </amexio-image> &nbsp;&nbsp;
+            <amexio-label size="small-bold" font-color="black">{{row}}</amexio-label>
+        </amexio-box>
+    </ng-template>
+</amexio-notification>
